@@ -1,0 +1,25 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    Message creation form
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Message deletion</legend>
+            <div>
+                Are you sure you want to delete message '{{ object.text|truncatechars:20 }}' from the topic '{{ object.topic.title }}'?
+            </div>
+        </fieldset>
+        <div>
+            <button type="submit" class="delete-button">
+                <span>Delete </span>
+            </button>
+            <a href="{% url 'topic-detail' pk=object.topic.id %}">
+                Cancel
+            </a>
+        </div>
+    </form>
+{% endblock center-plate-content %}

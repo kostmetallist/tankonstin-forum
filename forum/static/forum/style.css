@@ -1,0 +1,337 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    background-color: black;
+}
+
+.parent {
+    position: relative;
+    padding: 90px 0 80px 0; /*(header overall height)-sensitive*/
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background-color: #660000;
+    color: #dfdfdf;
+    font-size: 32px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 80px; /*footer size*/
+    width: 100%;
+    background-color: #000000;
+    color: #dfdfdf;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #990000;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+.flex-element {
+    background-color: rgba(179, 179, 179, 0.73);
+    margin: 10px;
+    padding: 10px;
+    font-size: 30px;
+}
+
+#flex-header {
+    background: #660000;
+    color: #dfdfdf;
+}
+
+#header-left {
+    background-color: #660000;
+/*    font-size: 32px;*/
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#header-right {
+    background-color: #660000;
+}
+
+#flex-main {
+    background-image: linear-gradient(#660000, black);
+    height: 100%;
+    align-items: stretch;
+}
+
+#left-plate {
+    width: 10%;
+    border-radius: 0 8px 20px 0;
+}
+
+#right-plate {
+    width: 15%;
+    border-radius: 8px 0 0 20px;
+}
+
+#center-plate {
+    width: 70%;
+    padding-right: 40px;
+    border-radius: 8px 8px 20px 20px;
+}
+
+.topic-message {
+
+    display: flex;
+    margin: 20px;
+    flex-wrap: nowrap;
+    color: #dfdfdf;
+    background-color: #330000;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.message-userinfo {
+
+    padding: 20px;
+    width: 20%;
+    border-right: 1px solid #dfdfdf;
+    background-color: #3d0000;
+    box-sizing: border-box;
+}
+
+.message-body {
+
+    padding: 10px;
+    width: 80%;
+    background-color: #330000;
+    box-sizing: border-box; 
+}
+
+p.message-timeposted {
+    position: relative;
+    top: 0;
+    margin-bottom: 10px;
+    font-size: 10pt; 
+    text-align: right;
+    border-bottom: 1px groove #aaa;
+}
+
+a {
+    text-decoration: none;
+    color: #dadada;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #8c8c8c;
+}
+
+.footer a:hover {
+    color: #262626;
+    background-color: #e6e6e6;
+    padding: 5px;
+}
+
+.footer a:active {
+    color: #373737;
+    background-color: #f7f7f7;
+}
+
+.section-title {
+    margin: 0px;
+    background-color: #330000;
+    color: #dfdfdf;
+}
+
+.section-title > label {
+    display: block;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #cccccc;
+}
+
+.section-title > label:hover {
+    background-color: #bfbfbf;
+    color: black;
+}
+
+.section-title > input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.section-title > input[type="checkbox"] ~ ul {
+    margin: 0;
+    list-style: none;
+    background-color: #3d0000;
+    padding-left: 5px;
+    height: 0;
+    transform: scaleY(0);
+}
+
+.section-title > input[type="checkbox"]:checked ~ ul {
+    height: 100%;
+    transform-origin: top;
+    transition: transform 0.3s ease-in;
+    transform: scaleY(1);
+}
+
+.section-title > input[type="checkbox"]:checked + label {
+    background: #afafaf;
+    color: black;
+}
+
+.section-title > input[type="checkbox"] ~ ul > li {
+    padding: 5px;
+}
+
+.section-title > input[type="checkbox"] ~ ul > li:hover {
+    background-color: #7a7a7a;
+    color: black;
+}
+
+.fixed-message-box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 5px;
+    padding: 5px 20px 5px 20px;
+    background: #99ff99;
+    color: #1b651b;
+    font-weight: bold;
+}
+
+.form-token {
+    padding: 5px 10px 5px 10px;
+    margin: 5px 0 5px 0;
+    /*border: 1px solid #999999;*/
+}
+
+.form-token > p {
+    margin: 5px;
+}
+
+.form-token > p > input, .form-token > p > textarea {
+    -webkit-transition: all 0.20s ease-in-out;
+    -moz-transition: all 0.20s ease-in-out;
+    -ms-transition: all 0.20s ease-in-out;
+    -o-transition: all 0.20s ease-in-out;
+    width: 60%;
+    outline: none;
+    border: 1px solid #999999;
+}
+
+.form-token > p > input {
+    height: 22px;
+}
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(79, 153, 255, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+ul.validation-errors {
+    padding: 0;
+    margin: 5px;
+    list-style: none;
+    font-size: 12px;
+    color: #ff4d4d;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+}
+
+p.field-hint {
+    padding: 0;
+    font-size: 12px;
+    color: #d9d9d9;
+}
+
+button {
+    border: none;
+    margin: 10px 10px 0 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+button > span {
+    position: relative;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+button > span:after {
+    position: absolute;
+    content: '\00bb';
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition-duration: 130ms;
+    transition: 0.1s;
+}
+
+button:hover > span {
+    padding-right: 25px;
+}
+
+button:hover > span:after {
+    opacity: 1;
+    right: 0;
+}
+
+button.delete-button {
+    background: rgba(255, 77, 77, 0.7);
+}
+
+button.delete-button:hover {
+    background: rgba(255, 77, 77, 0.9);
+}
+
+button.delete-button > span:after {
+    content: '\2718';
+}
+
+button.create-button {
+    background: rgba(128, 255, 128, 0.7);
+}
+
+button.create-button:hover {
+    background: rgba(128, 255, 128, 0.9);
+}
+
+button.create-button > span:after {
+    content: '\2714';
+}
+
+button.generic-button {
+    background: rgba(102, 0, 0, 0.7);
+    color: #e6e6e6;
+}
+
+button.generic-button:hover {
+    background: rgba(102, 0, 0, 0.9);
+}
+
+button.generic-button > span:after {
+    content: '\25b7';
+}

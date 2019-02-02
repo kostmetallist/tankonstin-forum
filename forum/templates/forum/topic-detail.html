@@ -1,0 +1,36 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    Topic #{{ object.id }}
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    <h0><b>{{ object.title }}</b></h0>
+
+    {% for msg in topic_messages %}
+        <div class="topic-message">
+            <div class="message-userinfo">
+                <p>By {{ msg.author.username }}</p>
+                <p>Registered {{ msg.author.date_joined }}</p>
+            </div>
+
+            <div class="message-body">
+                <p class="message-timeposted">
+                    <a href="{% url 'message-delete' pk=msg.id %}">
+                        delete?
+                    </a>
+                    posted at {{ msg.timestamp }}
+                </p>
+                <p>{{ msg.text }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <h0>No messages here</h0>
+    {% endfor %}
+
+    <div>
+        <a href="{% url 'message-create' topic=object.pk %}">
+            Post a message
+        </a>
+    </div>
+{% endblock center-plate-content %}

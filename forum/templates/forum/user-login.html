@@ -1,0 +1,57 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    User login form
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Logging in</legend>
+            <!-- {{ form.as_p }} -->
+
+
+            <ul class="validation-errors">
+            {% for err in form.non_field_errors %}
+                <li>{{ err }}</li>
+            {% endfor %}
+            </ul>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.username.id_for_label }}">
+                        Username
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in form.username.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.username }}</p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.password.id_for_label }}"> 
+                        Password
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in form.password.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.password }}</p>
+            </div>
+        </fieldset>
+        <div>
+            <button type="submit" class="generic-button">
+                <span>Log In </span>
+            </button>
+        </div>
+    </form>
+{% endblock center-plate-content %}

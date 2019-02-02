@@ -1,0 +1,28 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    Forum sections'n'topics
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    {% for sect in object_list %}
+        <div class="section-title">
+            <input type="checkbox" id="section-{{ sect.id }}">
+            <label for="section-{{ sect.id }}">
+                {{ sect.title }}
+            </label>
+            <ul>
+                {% for topic in sect.topic_set.all %}   
+                    <li>
+                        <a href="{% url 'topic-detail' pk=topic.id %}">{{ topic.title }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>No topics yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% empty %}
+        <h0>No sections here</h0>
+    {% endfor %}
+{% endblock center-plate-content %}

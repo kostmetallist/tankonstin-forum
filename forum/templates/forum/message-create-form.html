@@ -1,0 +1,20 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    Message creation form
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Topic message</legend>
+            {{ form.as_p }}
+        </fieldset>
+        <div>
+            <button type="submit" class="create-button">
+                <span>Done </span>
+            </button>
+        </div>
+    </form>
+{% endblock center-plate-content %}

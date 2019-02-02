@@ -1,0 +1,16 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    Welcome to Tankonsteen forum!
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    Recent topics:
+    <ul>
+        {% for topic in recent_topics %}
+            <li>
+                {{ topic.title }} in section {{ topic.section.title }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock center-plate-content %}

@@ -1,0 +1,98 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    User registration form
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>New User</legend>
+
+            <ul class="validation-errors">
+            {% for err in form.non_field_errors %}
+                <li>{{ err }}</li>
+            {% endfor %}
+            </ul>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.username.id_for_label }}">
+                        Username
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in form.username.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.username }}</p>
+                <p class="field-hint">
+                    No more than 150 characters. Letter, digit, @/./+/-/_ symbols allowed
+                </p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.email.id_for_label }}">
+                        Email
+                    </label>
+
+                    <ul class="validation-errors">
+                    {% for err in form.email.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.email }}</p>
+                <p class="field-hint">
+                    e.g. 'example@company.com'
+                </p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.password1.id_for_label }}"> 
+                        Password
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in form.password1.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.password1 }}</p>
+                <p class="field-hint">
+                    At least 8 characters, not entirely numeric
+                </p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.password2.id_for_label }}"> 
+                        Password Confirmation
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in form.password2.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.password2 }}</p>
+                <p class="field-hint">
+                    Must be same as Password
+                </p>
+            </div>
+
+        </fieldset>
+        <div>
+            <button type="submit" class="create-button">
+                <span>Register </span>
+            </button>
+        </div>
+    </form>
+{% endblock center-plate-content %}
