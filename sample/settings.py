@@ -143,3 +143,8 @@ LOGOUT_REDIRECT_URL = 'forum-home'
 # URL where user redirects when accessing some auth-required views
 
 LOGIN_URL = 'user-login'
+
+# Absolute filesystem path to the directory holding user-uploaded files
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_files')
+MEDIA_URL = '/media_files/'

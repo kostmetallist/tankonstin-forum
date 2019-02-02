@@ -1,3 +1,4 @@
+from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import (
@@ -9,7 +10,7 @@ from django.views.generic import (
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Message, Topic, Section
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, MessageCreationForm
 
 
 def forumHome(request):
@@ -55,7 +56,8 @@ class MessageCreateView(CreateView):
 
     model = Message
     template_name = 'forum/message-create-form.html'
-    fields = ['text']
+    # fields = ['text']
+    form_class = MessageCreationForm
 
     def get_success_url(self):
         return reverse('topic-detail', kwargs={'pk': self.kwargs['topic']})

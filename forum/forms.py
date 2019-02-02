@@ -1,6 +1,7 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .models import Message
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -11,3 +12,13 @@ class UserRegistrationForm(UserCreationForm):
         
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class MessageCreationForm(forms.ModelForm):
+    class Meta:
+
+        model = Message
+        fields = ['text']
+        widgets = {
+            'text': forms.Textarea()
+        }

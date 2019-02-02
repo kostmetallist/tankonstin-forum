@@ -107,6 +107,10 @@ html, body {
     box-sizing: border-box;
 }
 
+img.topic-message-image {
+    max-height: 512px;
+}
+
 .message-body {
 
     padding: 10px;

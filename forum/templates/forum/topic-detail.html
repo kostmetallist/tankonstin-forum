@@ -11,6 +11,9 @@
         <div class="topic-message">
             <div class="message-userinfo">
                 <p>By {{ msg.author.username }}</p>
+                <img class="topic-message-image" 
+                    src="{{ msg.author.userextra.avatar.url }}"
+                    width="100%">
                 <p>Registered {{ msg.author.date_joined }}</p>
             </div>
 

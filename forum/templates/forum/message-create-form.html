@@ -9,7 +9,30 @@
         {% csrf_token %}
         <fieldset>
             <legend>Topic message</legend>
-            {{ form.as_p }}
+
+            <ul class="validation-errors">
+            {% for err in form.non_field_errors %}
+                <li>{{ err }}</li>
+            {% endfor %}
+            </ul>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ form.text.id_for_label }}">
+                        Message text
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in form.text.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ form.text }}</p>
+                <p class="field-hint">
+                    No more than 4096 characters.
+                </p>
+            </div>
         </fieldset>
         <div>
             <button type="submit" class="create-button">
