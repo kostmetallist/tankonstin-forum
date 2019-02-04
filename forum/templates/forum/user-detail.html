@@ -1,0 +1,24 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    User profile
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+
+    <div class="profile-token">
+        <img class="user-profile-image" 
+            src="{{ profile_owner.userextra.avatar.url }}">
+    </div>
+
+    <div class="profile-token">
+        {{ profile_owner.username }}
+    </div>
+
+    <div class="profile-token">
+        <p>Description</p>
+        <p>{{ profile_owner.userextra.description }}</p>
+    </div>
+
+
+{% endblock center-plate-content %}

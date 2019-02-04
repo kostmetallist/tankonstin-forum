@@ -339,3 +339,24 @@ button.generic-button:hover {
 button.generic-button > span:after {
     content: '\25b7';
 }
+
+div.profile-token {
+    margin: 10px;
+}
+
+img.user-profile-image {
+    max-width: 512px;
+    max-height: 512px;
+}
+
+div.pagination-nav {
+    background: rgba(51, 0, 0, 0.8);
+    color: #dfdfdf;
+    width: 100%;
+    /*text-align: right;*/
+}
+
+div.pagination-nav a.current-page {
+    color: black;
+    background: rgba(180, 180, 180, 0.4)
+}

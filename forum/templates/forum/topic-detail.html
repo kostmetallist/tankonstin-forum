@@ -1,4 +1,5 @@
 {% extends 'forum/blueprint.html' %}
+{% load forum_extras %}
 
 {% block header-left-content %}
     Topic #{{ object.id }}
@@ -7,14 +8,18 @@
 {% block center-plate-content %}
     <h0><b>{{ object.title }}</b></h0>
 
-    {% for msg in topic_messages %}
+    {% for msg in object_list %}
         <div class="topic-message">
             <div class="message-userinfo">
-                <p>By {{ msg.author.username }}</p>
+                <p>by 
+                    <a href="{% url 'user-detail' pk=msg.author.id %}"> 
+                        {{ msg.author.username }}
+                    </a>
+                </p>
                 <img class="topic-message-image" 
                     src="{{ msg.author.userextra.avatar.url }}"
                     width="100%">
-                <p>Registered {{ msg.author.date_joined }}</p>
+                <p>registered {{ msg.author.date_joined }}</p>
             </div>
 
             <div class="message-body">
@@ -35,5 +40,46 @@
         <a href="{% url 'message-create' topic=object.pk %}">
             Post a message
         </a>
+    </div>
+
+    <div class="pagination-nav">
+        {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+
+                {% if page_obj.number|add:'-1' > 1 %}
+                    <a href="?page=1">1</a>
+                    {% if page_obj.number|add:'-1' > 2 %}
+                        ...
+                    {% endif %}
+                {% endif %}
+
+                <a href="?page={{ page_obj.previous_page_number }}">
+                    {{ page_obj.previous_page_number }}
+                </a>
+
+            {% endif %}
+
+            <a class="current-page" href="?page={{ page_obj.number }}">
+                {{ page_obj.number }}
+            </a>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">
+                    {{ page_obj.next_page_number }}
+                </a>
+
+                {% if page_obj.paginator.num_pages|subtract:page_obj.number > 1 %}
+                    {% if page_obj.paginator.num_pages|subtract:page_obj.number > 2 %}
+                        ...
+                    {% endif %}
+
+                    <a href="?page={{ page_obj.paginator.num_pages }}">
+                        {{ page_obj.paginator.num_pages }}
+                    </a>
+                {% endif %}
+            {% endif %}
+
+        {% endif %}
     </div>
 {% endblock center-plate-content %}
