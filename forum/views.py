@@ -5,7 +5,8 @@ from django.views.generic import (
     DetailView, 
     ListView, 
     CreateView, 
-    DeleteView
+    DeleteView, 
+    UpdateView,
 )
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import (
@@ -14,8 +15,13 @@ from django.contrib.auth.mixins import (
 )
 from django.views.generic.list import MultipleObjectMixin
 from django.contrib import messages
-from .models import Message, Topic, Section
-from .forms import UserRegistrationForm, MessageCreationForm
+from .models import Message, Topic, Section, UserExtra
+from .forms import (
+    UserRegistrationForm, 
+    MessageCreationForm, 
+    UserUpdateForm,
+    UserExtraUpdateForm
+)
 
 
 def forumHome(request):
@@ -35,7 +41,8 @@ def userRegistration(request):
 
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Successfully created account for {username}!')
+            messages.success(request, 
+                f'Successfully created account for {username}!')
             return redirect('forum-home')
 
     # 'GET' usually
@@ -43,6 +50,36 @@ def userRegistration(request):
         form = UserRegistrationForm()
 
     return render(request, 'forum/user-registration.html', {'form': form})
+
+def userProfileEditing(request, userid):
+    
+    if request.method == 'POST':
+
+        user_form = UserUpdateForm(
+            request.POST, 
+            instance=User.objects.get(id=userid))
+        extra_form = UserExtraUpdateForm(
+            request.POST,
+            request.FILES,
+            instance=User.objects.get(id=userid).userextra)
+
+        if user_form.is_valid() and extra_form.is_valid():
+
+            user_form.save()
+            extra_form.save()
+            return redirect('user-detail', pk=userid)
+
+    else: 
+
+        # populating the forms
+        user_form = UserUpdateForm(instance=User.objects.get(id=userid))
+        extra_form = UserExtraUpdateForm(
+            instance=User.objects.get(id=userid).userextra)
+
+
+    #return redirect('user-detail', pk=userid)
+    return render(request, 'forum/user-edit.html', 
+        {'user_form': user_form, 'extra_form': extra_form})
 
 
 class ForumUserDetailView(DetailView):
@@ -99,6 +136,7 @@ class MessageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
 
         return False
+
 
 class SectionListView(ListView):
 

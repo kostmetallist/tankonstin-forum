@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 # for UserExtra model usage (cause hardcoded instance.user.id dependence)
@@ -40,3 +41,14 @@ class UserExtra(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.CharField(default='', max_length=512)
     avatar = models.ImageField(default='default_avatar.png', upload_to=get_user_directory)
+
+    def save(self):
+
+        super().save()
+        av_img = Image.open(self.avatar.path)
+
+        if av_img.height > 256 or av_img.width > 256:
+
+            reduced_size = (256, 256)
+            av_img.thumbnail(reduced_size)
+            av_img.save(self.avatar.path)

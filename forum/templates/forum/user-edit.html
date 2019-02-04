@@ -1,0 +1,118 @@
+{% extends 'forum/blueprint.html' %}
+
+{% block header-left-content %}
+    User profile editing
+{% endblock header-left-content %}
+
+{% block center-plate-content %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Profile editing</legend>
+            <!-- {{ form.as_p }} -->
+
+            <ul class="validation-errors">
+            {% for err in user_form.non_field_errors %}
+                <li>{{ err }}</li>
+            {% endfor %}
+            </ul>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ user_form.username.id_for_label }}">
+                        Username
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in user_form.username.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ user_form.username }}</p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ user_form.email.id_for_label }}">
+                        Email
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in user_form.email.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ user_form.email }}</p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ user_form.first_name.id_for_label }}"> 
+                        First name
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in user_form.first_name.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ user_form.first_name }}</p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ user_form.last_name.id_for_label }}"> 
+                        Last name
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in user_form.last_name.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ user_form.last_name }}</p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ extra_form.description.id_for_label }}"> 
+                        Description
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in extra_form.description.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ extra_form.description }}</p>
+            </div>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ extra_form.avatar.id_for_label }}"> 
+                        Avatar
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in extra_form.avatar.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p>{{ extra_form.avatar }}</p>
+            </div>
+        </fieldset>
+        <div>
+            <button type="submit" class="generic-button">
+                <span>Ok</span>
+            </button>
+        </div>
+    </form>
+
+{% endblock center-plate-content %}
