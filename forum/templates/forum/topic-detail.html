@@ -37,7 +37,8 @@
     {% endfor %}
 
     <div>
-        <a href="{% url 'message-create' topic=object.pk %}">
+        <a href="{% url 'message-create' topic=object.pk %}"
+            class="button-like">
             Post a message
         </a>
     </div>

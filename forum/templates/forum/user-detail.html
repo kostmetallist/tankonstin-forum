@@ -6,18 +6,47 @@
 
 {% block center-plate-content %}
 
-    <div class="profile-token">
-        <img class="user-profile-image" 
-            src="{{ profile_owner.userextra.avatar.url }}">
-    </div>
+    <div class="flex-container" id="profile">
+        <div class="profile-panel" id="left-side">
+            <img class="user-profile-image" 
+                src="{{ profile_owner.userextra.avatar.url }}">
 
-    <div class="profile-token">
-        {{ profile_owner.username }}
-    </div>
+            <p>
+                {% if user.id == profile_owner.id %}
+                    <a href="{% url 'user-edit' userid=user.id %}"
+                        class="button-like"
+                        style="padding: 10px 20px 10px 20px;">
+                        Edit
+                    </a>
+                {% endif %}
+            </p>
+        </div>
 
-    <div class="profile-token">
-        <p>Description</p>
-        <p>{{ profile_owner.userextra.description }}</p>
+        <div class="profile-panel" id="right-side">
+            <p class="profile-element">
+                <span class="username">{{ profile_owner.username }}</span>
+                <br />
+                <span class="email">{{ profile_owner.email }}</span>
+            </p>
+
+            {% if profile_owner.first_name or profile_owner.last_name %}
+                <p class="profile-element">
+                    <span class="pre-note"><i>personal</i></span>
+                    <br />
+                    <span class="indented">
+                        {{ profile_owner.first_name }}
+                        {{ profile_owner.last_name }}
+                    </span>
+                </p>
+            {% endif %}
+            <p class="profile-element">
+                <span class="pre-note"><i>description</i></span>
+                <br />
+                <span class="indented">
+                    {{ profile_owner.userextra.description }}
+                </span>
+            </p>
+        </div>
     </div>
 
 {% endblock center-plate-content %}

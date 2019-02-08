@@ -36,7 +36,10 @@ SECRET_KEY = getKey('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '25.57.103.207',
+]
 
 
 # Application definition

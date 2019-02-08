@@ -17,7 +17,8 @@
             <button type="submit" class="delete-button">
                 <span>Delete </span>
             </button>
-            <a href="{% url 'topic-detail' pk=object.topic.id %}">
+            <a href="{% url 'topic-detail' pk=object.topic.id %}"
+                class="button-like">
                 Cancel
             </a>
         </div>

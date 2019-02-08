@@ -340,13 +340,55 @@ button.generic-button > span:after {
     content: '\25b7';
 }
 
-div.profile-token {
+.flex-container#profile {
+    background: rgba(0, 0, 0, 0.0);
+}
+
+div.profile-panel {
     margin: 10px;
 }
 
+.profile-panel#right-side {
+    width: 30%;
+}
+
+.profile-panel#right-side {
+    /*background: rgba(0, 0, 0, 0.05);*/
+    width: 70%;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+p.profile-element {
+    margin: 0 0 30px 0;
+    /*border-bottom: 1px solid black;*/
+}
+
+p.profile-element span.username {
+    font-weight: bold;
+    font-size: 48px;
+}
+
+p.profile-element span.email {
+    color: rgb(36, 36, 36);
+    font-size: 24px;
+}
+
+p.profile-element span.pre-note {
+    font-size: 18px;
+    color: rgb(91, 91, 91);
+    border-bottom: 1px solid rgb(91, 91, 91);
+}
+
+p.profile-element span.indented {
+    margin: 20px;
+    padding: 20px;
+}
+
 img.user-profile-image {
-    max-width: 512px;
-    max-height: 512px;
+    max-width: 256px;
+    max-height: 256px;
+    border-radius: 10%;
 }
 
 div.pagination-nav {
@@ -358,5 +400,22 @@ div.pagination-nav {
 
 div.pagination-nav a.current-page {
     color: black;
-    background: rgba(180, 180, 180, 0.4)
+    background: rgba(180, 180, 180, 0.4);
+}
+
+a.button-like {
+    /*margin: 10px 10px 0 10px;*/
+    font-family: sans-serif;
+    padding: 10px;
+    /*text-align: center;*/
+    color: black;
+    background: rgba(230, 230, 230, 0.7);
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+a.button-like:hover {
+    background: rgba(230, 230, 230, 0.9);
+    text-decoration: none;
 }

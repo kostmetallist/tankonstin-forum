@@ -43,3 +43,6 @@ class UserExtraUpdateForm(forms.ModelForm):
 
         model = UserExtra
         fields = ['description', 'avatar']
+        widgets = {
+            'description': forms.Textarea()
+        }

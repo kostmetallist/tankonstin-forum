@@ -10,7 +10,6 @@
         {% csrf_token %}
         <fieldset>
             <legend>Profile editing</legend>
-            <!-- {{ form.as_p }} -->
 
             <ul class="validation-errors">
             {% for err in user_form.non_field_errors %}
