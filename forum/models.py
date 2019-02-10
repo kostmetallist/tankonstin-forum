@@ -42,9 +42,9 @@ class UserExtra(models.Model):
     description = models.CharField(default='', max_length=512)
     avatar = models.ImageField(default='default_avatar.png', upload_to=get_user_directory)
 
-    def save(self):
+    def save(self, *args, **kwargs):
 
-        super().save()
+        super().save(*args, **kwargs)
         av_img = Image.open(self.avatar.path)
 
         if av_img.height > 256 or av_img.width > 256:
