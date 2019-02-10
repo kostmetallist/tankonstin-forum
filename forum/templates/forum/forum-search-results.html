@@ -2,49 +2,26 @@
 {% load forum_extras %}
 
 {% block header-left-content %}
-    Topic #{{ object.id }}
+    Search results
 {% endblock header-left-content %}
 
 {% block center-plate-content %}
     <span class="center-title">
-        <a href="#">{{ object.section.title }}</a> &#9656;
-        <a href="#">{{ object.title }}</a>
+        All we have found for your query: 
     </span>
 
     {% for msg in object_list %}
-        <div class="topic-message">
-            <div class="message-userinfo">
-                <p>by 
-                    <a href="{% url 'user-detail' pk=msg.author.id %}"> 
-                        {{ msg.author.username }}
-                    </a>
-                </p>
-                <img class="topic-message-image" 
-                    src="{{ msg.author.userextra.avatar.url }}"
-                    width="100%">
-                <p>registered {{ msg.author.date_joined }}</p>
-            </div>
-
-            <div class="message-body">
-                <p class="message-timeposted">
-                    <a href="{% url 'message-delete' pk=msg.id %}">
-                        delete?
-                    </a>
-                    posted at {{ msg.timestamp }}
-                </p>
-                <p>{{ msg.text }}</p>
-            </div>
-        </div>
+        <p style="border-bottom: 1px solid black;">
+            {{ msg.text|truncatechars:30 }} in topic <br/>
+            {{ msg.topic.title }} in section <br/>
+            {{ msg.topic.section.title }}
+        </p>
     {% empty %}
-        <h0>No messages here</h0>
+        <p class="fault-message">
+            No matches. Try to modify your query either by reducing 
+            text redundancy or by respelling things you are looking for.
+        </p>
     {% endfor %}
-
-    <div>
-        <a href="{% url 'message-create' topic=object.pk %}"
-            class="button-like">
-            Post a message
-        </a>
-    </div>
 
     <div class="pagination-nav">
         {% if is_paginated %}

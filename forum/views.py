@@ -22,6 +22,9 @@ from .forms import (
     UserUpdateForm,
     UserExtraUpdateForm
 )
+from django.db.models import Q
+from functools import reduce
+import operator
 
 
 def forumHome(request):
@@ -98,10 +101,9 @@ class TopicDetailView(DetailView, MultipleObjectMixin):
 
     def get_context_data(self, **kwargs):
 
-        #context = super().get_context_data(**kwargs)
-        #context['topic_messages'] = Message.objects.all().filter(topic_id=self.kwargs['pk']).order_by('timestamp')
         object_list = Message.objects.all().filter(topic_id=self.kwargs['pk']).order_by('timestamp')
         context = super().get_context_data(object_list=object_list, **kwargs)
+        context['page_title'] = context['object'].title
         return context
 
 
@@ -142,3 +144,25 @@ class SectionListView(ListView):
 
     model = Section
     template_name = 'forum/index.html'
+
+
+class SearchListView(ListView):
+
+    model = Message
+    template_name = 'forum/forum-search-results.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+
+        result = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+
+            query_words = query.split()
+            result = result.filter(
+                reduce(operator.and_, 
+                    (Q(text__icontains=q) for q in query_words))
+                )
+
+        return result

@@ -3,8 +3,8 @@
 <html>
 
 <head>
-    {% if title %}
-        <title>Tankonsteen {{ title }}</title>
+    {% if page_title %}
+        <title>{{ page_title }}</title>
     {% else %}
         <title>Tankonsteen Forum</title>
     {% endif %}
@@ -42,7 +42,18 @@
 
         <div class="flex-container" id="flex-main">
             <div class="flex-element" id="left-plate">
-                left
+                <span class="nav-title">Navigation</span>
+                <ul style="list-style-type: circle;">
+                    <li><a href="{% url 'forum-home' %}">home</a></li>
+                    <li><a href="{% url 'forum-index' %}">topic list</a></li>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'user-detail' pk=user.id %}">
+                                profile
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
 
             <div class="flex-element" id="center-plate">
@@ -51,7 +62,20 @@
             </div>
 
             <div class="flex-element" id="right-plate">
-                right
+                <span class="nav-title">Search bar</span>
+                <form method="get"
+                    action="{% url 'forum-search-results' %}"
+                    accept-charset="utf-8">
+
+                    <p>
+                        <button class="search-button"
+                            type="submit">
+                        </button>
+                        <input class="search-field" name="q" 
+                            type="text" placeholder="search..."
+                            required="">
+                    </p>
+                </form>
             </div>
         </div>
 
