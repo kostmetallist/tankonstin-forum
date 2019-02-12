@@ -36,15 +36,45 @@
             </div>
         </div>
     {% empty %}
-        <h0>No messages here</h0>
+        <p class="fault-message">
+            Sorry, no messages here
+        </p>
     {% endfor %}
 
-    <div>
-        <a href="{% url 'message-create' topic=object.pk %}"
-            class="button-like">
-            Post a message
-        </a>
-    </div>
+    <form method="POST" 
+        action="{% url 'message-create' topic=object.id %}">
+        {% csrf_token %}
+        <fieldset style="border: none;">
+            <ul class="validation-errors">
+            {% for err in message_form.non_field_errors %}
+                <li>{{ err }}</li>
+            {% endfor %}
+            </ul>
+
+            <div class="form-token">
+                <p>
+                    <label for="{{ message_form.text.id_for_label }}">
+                        <b>Post a message</b>
+                    </label> 
+
+                    <ul class="validation-errors">
+                    {% for err in message_form.text.errors %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                <p class="topic-message-create">{{ message_form.text }}</p>
+            </div>
+
+            <button type="submit" class="generic-button">
+                <span style="width: 80px;">Done</span>
+            </button>
+        </fieldset>
+
+        <div style="text-align: right; ">
+            
+        </div>
+    </form>
 
     <div class="pagination-nav">
         {% if is_paginated %}

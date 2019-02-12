@@ -103,7 +103,11 @@ class TopicDetailView(DetailView, MultipleObjectMixin):
 
         object_list = Message.objects.all().filter(topic_id=self.kwargs['pk']).order_by('timestamp')
         context = super().get_context_data(object_list=object_list, **kwargs)
+
+        # for displaying topic title at the browser tab
         context['page_title'] = context['object'].title
+        # for injecting message creation form into the topic view
+        context['message_form'] = MessageCreationForm()
         return context
 
 

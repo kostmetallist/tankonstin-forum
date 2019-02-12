@@ -411,10 +411,16 @@ img.user-profile-image {
 
 div.pagination-nav {
     background: rgba(51, 0, 0, 0.8);
+    border-radius: 0 0 12px 12px;
     margin-top: 20px;
+    /*margin: 20px 10px 10px 20px;*/
     padding-left: 20px;
     color: #dfdfdf;
     width: 100%;
+}
+
+div.pagination-nav a {
+    margin: 0 3px 0 3px;
 }
 
 div.pagination-nav a.current-page {
@@ -479,4 +485,15 @@ button.search-button {
 
 button.search-button:hover {
     background-color: rgb(255, 255, 255, 0.9);
+}
+
+p.topic-message-create {
+    margin-bottom: 0;
+}
+
+p.topic-message-create > textarea {
+    width: 95%;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
 }
