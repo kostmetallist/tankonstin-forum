@@ -1,4 +1,4 @@
 secrets.json
-forum/__pycache__
-sample/__pycache__
-forum/templatetags/__pycache__
+/env
+
+__pycache__
